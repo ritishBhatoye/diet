@@ -1,0 +1,44 @@
+// Icons
+export const arrowDown = require("../assets/icons/arrow-down.png");
+export const arrowRight = require("../assets/icons/arrow-right.png");
+export const bag = require("../assets/icons/bag.png");
+export const check = require("../assets/icons/check.png");
+export const clock = require("../assets/icons/clock.png");
+export const dollar = require("../assets/icons/dollar.png");
+export const envelope = require("../assets/icons/envelope.png");
+export const home = require("../assets/icons/home.png");
+export const location = require("../assets/icons/location.png");
+export const logout = require("../assets/icons/logout.png");
+export const minus = require("../assets/icons/minus.png");
+export const pencil = require("../assets/icons/pencil.png");
+export const person = require("../assets/icons/person.png");
+export const phone = require("../assets/icons/phone.png");
+export const plus = require("../assets/icons/plus.png");
+export const search = require("../assets/icons/search.png");
+export const star = require("../assets/icons/star.png");
+export const trash = require("../assets/icons/trash.png");
+export const user = require("../assets/icons/user.png");
+export const arrowBack = require("../assets/icons/arrow-back.png");
+
+// Images
+export const avatar = require("../assets/images/avatar.png");
+export const avocado = require("../assets/images/avocado.png");
+export const bacon = require("../assets/images/bacon.png");
+export const burgerOne = require("../assets/images/burger-one.png");
+export const burgerTwo = require("../assets/images/burger-two.png");
+export const buritto = require("../assets/images/buritto.png");
+export const cheese = require("../assets/images/cheese.png");
+export const coleslaw = require("../assets/images/coleslaw.png");
+export const cucumber = require("../assets/images/cucumber.png");
+export const emptyState = require("../assets/images/empty-state.png");
+export const fries = require("../assets/images/fries.png");
+export const loginGraphic = require("../assets/images/login-graphic.png");
+export const logo = require("../assets/images/logo.png");
+export const mozarellaSticks = require("../assets/images/mozarella-sticks.png");
+export const mushrooms = require("../assets/images/mushrooms.png");
+export const onionRings = require("../assets/images/onion-rings.png");
+export const onions = require("../assets/images/onions.png");
+export const pizzaOne = require("../assets/images/pizza-one.png");
+export const salad = require("../assets/images/salad.png");
+export const success = require("../assets/images/success.png");
+export const tomatoes = require("../assets/images/tomatoes.png");
