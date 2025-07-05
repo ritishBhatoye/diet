@@ -4,7 +4,7 @@ import { SafeAreaView, Text } from "react-native";
 const Cart = () => {
   return (
     <SafeAreaView>
-      <Text>Cart</Text>
+      <Text className="text-lg text-nowrap">Cart</Text>
     </SafeAreaView>
   );
 };
