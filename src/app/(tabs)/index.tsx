@@ -1,5 +1,5 @@
 import { images, offers } from "@/constants";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import {
   FlatList,
   Image,
