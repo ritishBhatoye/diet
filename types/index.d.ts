@@ -1,5 +1,6 @@
 // Image file type declarations
-import { Models } from "react-native-appwrite";
+import type { ImageSourcePropType } from "react-native";
+import type { Models } from "react-native-appwrite";
 
 declare module "*.png" {
   const value: any;
@@ -65,11 +66,11 @@ export interface CartItemType {
 }
 
 export interface CartStore {
-  items: CartItem[];
-  addItem: (item: Omit<CartItem, "quantity">) => void;
-  removeItem: (id: string, customizations: CartCustomization[]) => void;
-  increaseQty: (id: string, customizations: CartCustomization[]) => void;
-  decreaseQty: (id: string, customizations: CartCustomization[]) => void;
+  items: CartItemType[];
+  addItem: (item: Omit<CartItemType, "quantity">) => void;
+  removeItem: (id: string, customizations?: CartCustomization[]) => void;
+  increaseQty: (id: string, customizations?: CartCustomization[]) => void;
+  decreaseQty: (id: string, customizations?: CartCustomization[]) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
