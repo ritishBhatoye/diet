@@ -4,12 +4,12 @@ import {
   Pressable,
   SafeAreaView,
   ScrollView,
-  TouchableOpacity,
   View,
 } from 'react-native';
 
 import { MacroStat, NutritionProgress, QuickActionButton } from '@/components';
-import { Icon, Text } from '@/components/atoms';
+import { Text } from '@/components/atoms';
+import TopAppNavigator from '@/components/home/TopAppNavigator';
 import { ICONS, offers } from '@/constants';
 
 const dailyStats = {
@@ -34,21 +34,7 @@ export default function Index() {
     <SafeAreaView className="flex-1 bg-gray-50">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View className="bg-white px-5 pb-3 pt-5">
-          <View className="mb-4 flex-row items-center justify-between">
-            <View>
-              <Text variant="subheading" weight="bold">
-                Good Morning!
-              </Text>
-              <Text variant="caption" color="secondary">
-                Let&apos;s track your nutrition today
-              </Text>
-            </View>
-            <TouchableOpacity className="h-10 w-10 items-center justify-center rounded-full bg-gray-100">
-              <Icon name={ICONS.profile} color="#6B7280" />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <TopAppNavigator />
 
         {/* Daily Progress Card */}
         <View className="mx-5 mt-4 rounded-2xl bg-white p-4 shadow-sm">
