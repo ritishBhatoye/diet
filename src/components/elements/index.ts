@@ -1,4 +1,5 @@
 export { CategoryChip } from './CategoryChip';
+export { LocationBottomSheet } from './LocationBottomSheet';
 export { MacroStat } from './MacroStat';
 export { MenuListItem } from './MenuListItem';
 export { NutritionProgress } from './NutritionProgress';

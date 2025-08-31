@@ -3,6 +3,7 @@ export const ICONS = {
   home: 'home-outline' as const,
   search: 'search-outline' as const,
   cart: 'bag-outline' as const,
+  bag: 'bag-outline' as const,
   profile: 'person-outline' as const,
 
   // Actions
@@ -29,6 +30,7 @@ export const ICONS = {
   calendar: 'calendar-outline' as const,
   clock: 'time-outline' as const,
   location: 'location-outline' as const,
+  store: 'storefront-outline' as const,
 
   // Settings
   settings: 'settings-outline' as const,

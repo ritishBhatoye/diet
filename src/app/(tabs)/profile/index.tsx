@@ -1,13 +1,8 @@
-import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native';
 
-import { Text } from '@/components/atoms';
-import { images } from '@/constants';
+import { Avatar, Icon, Text } from '@/components/atoms';
+import { ICONS, images } from '@/constants';
 
 const userStats = {
   currentWeight: 68.5,
@@ -78,11 +73,7 @@ const Profile = () => {
               </View>
             </View>
             <TouchableOpacity className="h-10 w-10 items-center justify-center rounded-full bg-gray-100">
-              <Image
-                source={images.pencil}
-                className="h-5 w-5"
-                resizeMode="contain"
-              />
+              <Icon name={ICONS.edit} size="small" color="#6B7280" />
             </TouchableOpacity>
           </View>
 
@@ -160,7 +151,7 @@ const Profile = () => {
               key={item.id}
               className="mb-2 flex-row items-center rounded-xl bg-white p-4 shadow-sm"
             >
-              <View
+              {/* <View
                 className="mr-4 h-10 w-10 items-center justify-center rounded-full"
                 style={{ backgroundColor: `${item.color}20` }}
               >
@@ -170,14 +161,14 @@ const Profile = () => {
                   resizeMode="contain"
                   style={{ tintColor: item.color }}
                 />
-              </View>
+              </View> */}
               <Text className="flex-1 font-quicksand-medium text-base text-gray-800">
                 {item.title}
               </Text>
-              <Image
-                source={images.arrowRight}
-                className="h-4 w-4"
-                resizeMode="contain"
+              <Ionicons
+                name="chevron-forward-outline"
+                color={'#000000'}
+                size={24}
               />
             </TouchableOpacity>
           ))}
@@ -185,13 +176,14 @@ const Profile = () => {
           {/* Logout */}
           <TouchableOpacity className="mt-4 flex-row items-center rounded-xl bg-red-50 p-4">
             <View className="mr-4 h-10 w-10 items-center justify-center rounded-full bg-red-100">
-              <Image
-                source={images.logout}
-                className="h-5 w-5"
-                resizeMode="contain"
-              />
+              <Icon name={ICONS.logout} size="small" color="#EF4444" />
             </View>
-            <Text className="flex-1 font-quicksand-medium text-base text-red-600">
+            <Text
+              variant="body"
+              weight="medium"
+              color="error"
+              className="flex-1"
+            >
               Sign Out
             </Text>
           </TouchableOpacity>

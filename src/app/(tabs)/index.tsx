@@ -27,8 +27,8 @@ const quickActions = [
 ] as const;
 
 export default function Index() {
-  const calorieProgress =
-    (dailyStats.calories.consumed / dailyStats.calories.target) * 100;
+  // const calorieProgress =
+  //   (dailyStats.calories.consumed / dailyStats.calories.target) * 100;
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50">

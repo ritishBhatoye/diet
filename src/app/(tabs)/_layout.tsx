@@ -1,23 +1,21 @@
+import { Ionicons } from '@expo/vector-icons';
+import cn from 'clsx';
+import { Tabs } from 'expo-router';
+import { Text, View } from 'react-native';
 
-import cn from "clsx";
-import { Tabs } from "expo-router";
-import React from "react";
-import { Image, Text, View } from "react-native";
+import { ICONS, images } from '@/constants';
 
-import { images } from "@/constants";
-
-const TabBarIcon = ({ focused, icon, title }: any) => (
-  <View className="flex min-w-20 items-center justify-center min-h-full gap-1 mt-12">
-    <Image
-      source={icon}
-      className="size-7"
-      resizeMode="contain"
-      tintColor={focused ? "#FE8C00" : "#5D5F6D"}
+const TabBarIcon = ({ focused, iconName, title }: unknown) => (
+  <View className="mt-12 flex min-h-full min-w-20 items-center justify-center gap-1">
+    <Ionicons
+      name={iconName}
+      size={28}
+      color={focused ? '#FE8C00' : '#5D5F6D'}
     />
     <Text
       className={cn(
-        "text-sm font-bold",
-        focused ? "text-primary" : "text-gray-200"
+        'text-sm font-bold',
+        focused ? 'text-primary' : 'text-gray-200'
       )}
     >
       {title}
@@ -42,10 +40,10 @@ export default function TabLayout() {
           borderBottomRightRadius: 50,
           marginHorizontal: 20,
           height: 80,
-          position: "absolute",
+          position: 'absolute',
           bottom: 40,
-          backgroundColor: "white",
-          shadowColor: "#1a1a1a",
+          backgroundColor: 'white',
+          shadowColor: '#1a1a1a',
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.1,
           shadowRadius: 4,
@@ -56,34 +54,38 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: 'Home',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Home" icon={images.home} focused={focused} />
+            <TabBarIcon title="Home" iconName={ICONS.home} focused={focused} />
           ),
         }}
       />
       <Tabs.Screen
         name="search"
         options={{
-          title: "Search",
+          title: 'Search',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Search" icon={images.search} focused={focused} />
+            <TabBarIcon
+              title="Search"
+              iconName={ICONS.search}
+              focused={focused}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="cart"
         options={{
-          title: "Cart",
+          title: 'Cart',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title="Cart" icon={images.bag} focused={focused} />
+            <TabBarIcon title="Cart" iconName={ICONS.bag} focused={focused} />
           ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
+          title: 'Profile',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Profile"
