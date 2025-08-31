@@ -1,77 +1,153 @@
-import { Fragment } from "react";
 import {
   FlatList,
   Image,
   Pressable,
   SafeAreaView,
-  Text,
+  ScrollView,
   TouchableOpacity,
   View,
-} from "react-native";
+} from 'react-native';
 
-import { images, offers } from "@/constants";
+import { MacroStat, NutritionProgress, QuickActionButton } from '@/components';
+import { Icon, Text } from '@/components/atoms';
+import { ICONS, offers } from '@/constants';
+
+const dailyStats = {
+  calories: { consumed: 1250, target: 2000 },
+  water: { consumed: 6, target: 8 },
+  protein: { consumed: 45, target: 120 },
+  carbs: { consumed: 150, target: 200 },
+};
+
+const quickActions = [
+  { id: 1, title: 'Log Meal', iconName: ICONS.restaurant, color: '#10B981' },
+  { id: 2, title: 'Scan Food', iconName: ICONS.barcode, color: '#3B82F6' },
+  { id: 3, title: 'Add Water', iconName: ICONS.water, color: '#06B6D4' },
+  { id: 4, title: 'Weigh In', iconName: ICONS.scale, color: '#8B5CF6' },
+] as const;
 
 export default function Index() {
+  const calorieProgress =
+    (dailyStats.calories.consumed / dailyStats.calories.target) * 100;
+
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <FlatList
-        ListHeaderComponent={
-          <View>
-            <View className="flex-row  justify-between w-full my-5">
-              <View className="flex-col items-start">
-                <Text className="text-sm text-primary">DELIVER TO</Text>
-                <TouchableOpacity className="items-center flex-row gap-x-1 mt-0.5">
-                  <Text className="text-dark-100">Jalandhar,Punjab</Text>
-                  <Image
-                    source={images.arrowDown}
-                    className="size-3"
-                    resizeMode="contain"
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        }
-        contentContainerClassName="pb-28 px-5"
-        data={offers}
-        renderItem={({ item, index }) => {
-          const isEven: boolean = index % 2 === 0;
-          return (
+    <SafeAreaView className="flex-1 bg-gray-50">
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+        {/* Header */}
+        <View className="bg-white px-5 pb-3 pt-5">
+          <View className="mb-4 flex-row items-center justify-between">
             <View>
-              <Pressable
-                className={`w-full h-48 my-3 rounded-xl overflow-hidden shadow-lg flex items-center gap-5 ${isEven ? "flex-row-reverse" : "flex-row"}`}
-                style={{ backgroundColor: item.color }}
-                android_ripple={{ color: "#ffff22" }}
-              >
-                {() => (
-                  <Fragment>
-                    <View className="h-full w-1/2">
-                      <Image
-                        source={item.image}
-                        className="size-full"
-                        resizeMode="contain"
-                      />
-                    </View>
-                    <View
-                      className={`flex-1 h-full flex flex-col justify-center items-start gap-4 ${isEven ? "pl-10" : "pr-10"}`}
-                    >
-                      <Text className="text-3xl font-quicksand-bold text-white leading-tight">
-                        {item.title}
-                      </Text>
-                      <Image
-                        source={images.arrowRight}
-                        className="size-10"
-                        resizeMode="contain"
-                        tintColor={"#ffffff"}
-                      />
-                    </View>
-                  </Fragment>
-                )}
-              </Pressable>
+              <Text variant="subheading" weight="bold">
+                Good Morning!
+              </Text>
+              <Text variant="caption" color="secondary">
+                Let&apos;s track your nutrition today
+              </Text>
             </View>
-          );
-        }}
-      />
+            <TouchableOpacity className="h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+              <Icon name={ICONS.profile} color="#6B7280" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Daily Progress Card */}
+        <View className="mx-5 mt-4 rounded-2xl bg-white p-4 shadow-sm">
+          <Text variant="subheading" weight="bold" className="mb-4">
+            Today&apos;s Progress
+          </Text>
+
+          {/* Calories */}
+          <NutritionProgress
+            title="Calories"
+            current={dailyStats.calories.consumed}
+            target={dailyStats.calories.target}
+            color="#10B981"
+            className="mb-4"
+          />
+
+          {/* Macros */}
+          <View className="flex-row justify-between">
+            <MacroStat
+              label="Protein"
+              value={`${dailyStats.protein.consumed}g`}
+              color="blue"
+            />
+            <MacroStat
+              label="Carbs"
+              value={`${dailyStats.carbs.consumed}g`}
+              color="orange"
+            />
+            <MacroStat
+              label="Water"
+              value={`${dailyStats.water.consumed} cups`}
+              color="cyan"
+            />
+          </View>
+        </View>
+
+        {/* Quick Actions */}
+        <View className="mx-5 mt-4">
+          <Text variant="subheading" weight="bold" className="mb-3">
+            Quick Actions
+          </Text>
+          <View className="flex-row justify-between">
+            {quickActions.map(action => (
+              <QuickActionButton
+                key={action.id}
+                title={action.title}
+                iconName={action.iconName}
+                color={action.color}
+                className="mx-1"
+              />
+            ))}
+          </View>
+        </View>
+
+        {/* Meal Plans */}
+        <View className="mx-5 mb-4 mt-6">
+          <Text variant="subheading" weight="bold" className="mb-3">
+            Recommended Meals
+          </Text>
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={offers}
+            renderItem={({ item }) => (
+              <Pressable
+                className="mr-4 h-40 w-64 overflow-hidden rounded-xl shadow-sm"
+                style={{ backgroundColor: item.color }}
+              >
+                <View className="h-full flex-row">
+                  <View className="flex-1 justify-center p-4">
+                    <Text
+                      variant="heading"
+                      weight="bold"
+                      color="white"
+                      className="mb-2"
+                    >
+                      {item.title}
+                    </Text>
+                    <Text
+                      variant="caption"
+                      color="white"
+                      className="opacity-90"
+                    >
+                      Healthy & Delicious
+                    </Text>
+                  </View>
+                  <View className="h-full w-24">
+                    <Image
+                      source={item.image}
+                      className="h-full w-full"
+                      resizeMode="contain"
+                    />
+                  </View>
+                </View>
+              </Pressable>
+            )}
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
