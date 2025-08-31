@@ -1,9 +1,10 @@
-import { Tabs } from "expo-router";
 
-import { images } from "@/constants";
 import cn from "clsx";
+import { Tabs } from "expo-router";
 import React from "react";
 import { Image, Text, View } from "react-native";
+
+import { images } from "@/constants";
 
 const TabBarIcon = ({ focused, icon, title }: any) => (
   <View className="flex min-w-20 items-center justify-center min-h-full gap-1 mt-12">

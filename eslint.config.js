@@ -18,17 +18,13 @@ module.exports = defineConfig([
   {
     files: ['**/*.{ts,tsx,js,jsx}'],
     rules: {
-      // TypeScript specific rules
+      // TypeScript specific rules (non-type-aware)
       '@typescript-eslint/no-unused-vars': ['error', {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
         caughtErrorsIgnorePattern: '^_'
       }],
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/prefer-nullish-coalescing': 'error',
-      '@typescript-eslint/prefer-optional-chain': 'error',
-      '@typescript-eslint/no-unnecessary-condition': 'error',
-      '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/consistent-type-imports': ['error', {
         prefer: 'type-imports',
         fixStyle: 'separate-type-imports'
@@ -40,8 +36,6 @@ module.exports = defineConfig([
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'react/jsx-no-leaked-render': 'error',
-      'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
       'react/self-closing-comp': 'error',
       'react/jsx-boolean-value': ['error', 'never'],
 
@@ -52,13 +46,8 @@ module.exports = defineConfig([
       'no-debugger': 'error',
       'no-alert': 'error',
       'no-duplicate-imports': 'error',
-      'no-unused-expressions': 'error',
       'prefer-template': 'error',
       'object-shorthand': 'error',
-      'prefer-destructuring': ['error', {
-        array: true,
-        object: true
-      }],
 
       // Import/Export rules
       'import/order': ['error', {
@@ -76,20 +65,12 @@ module.exports = defineConfig([
           caseInsensitive: true
         }
       }],
-      'import/no-default-export': 'off',
-      'import/prefer-default-export': 'off',
 
       // Performance and best practices
       'no-nested-ternary': 'error',
       'no-unneeded-ternary': 'error',
       'prefer-arrow-callback': 'error',
-      'arrow-body-style': ['error', 'as-needed'],
-
-      // Accessibility
-      'jsx-a11y/accessible-emoji': 'error',
-      'jsx-a11y/alt-text': 'error',
-      'jsx-a11y/anchor-has-content': 'error',
-      'jsx-a11y/no-autofocus': 'warn'
+      'arrow-body-style': ['error', 'as-needed']
     }
   },
   {

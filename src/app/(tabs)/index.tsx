@@ -1,4 +1,3 @@
-import { images, offers } from "@/constants";
 import { Fragment } from "react";
 import {
   FlatList,
@@ -9,6 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+
+import { images, offers } from "@/constants";
 
 export default function Index() {
   return (
@@ -34,7 +35,7 @@ export default function Index() {
         contentContainerClassName="pb-28 px-5"
         data={offers}
         renderItem={({ item, index }) => {
-          const isEven: boolean = index % 2 == 0;
+          const isEven: boolean = index % 2 === 0;
           return (
             <View>
               <Pressable
@@ -42,7 +43,7 @@ export default function Index() {
                 style={{ backgroundColor: item.color }}
                 android_ripple={{ color: "#ffff22" }}
               >
-                {({ pressed }) => (
+                {() => (
                   <Fragment>
                     <View className="h-full w-1/2">
                       <Image

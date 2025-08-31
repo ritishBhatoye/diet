@@ -1,7 +1,5 @@
 import React from "react";
 
-const AuthLayout = () => {
-  return <></>;
-};
+const AuthLayout = () => <></>;
 
 export default AuthLayout;

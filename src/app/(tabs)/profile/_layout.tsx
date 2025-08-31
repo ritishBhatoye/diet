@@ -1,10 +1,10 @@
-import { images } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import React from "react";
 import { Image } from "react-native";
-const ProfileLayout = () => {
-  return (
+
+import { images } from "@/constants";
+const ProfileLayout = () => (
     <Stack>
       <Stack.Screen
         name="profile"
@@ -25,6 +25,5 @@ const ProfileLayout = () => {
       />
     </Stack>
   );
-};
 
 export default ProfileLayout;
