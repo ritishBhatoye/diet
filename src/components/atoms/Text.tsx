@@ -1,16 +1,35 @@
 import React from 'react';
-import { Text as RNText, TextProps as RNTextProps } from 'react-native';
+import type { TextProps as RNTextProps } from 'react-native';
+import { Text as RNText } from 'react-native';
 
 interface TextProps extends RNTextProps {
   variant?: 'heading' | 'subheading' | 'body' | 'caption' | 'label';
-  weight?: 'regular' | 'medium' | 'bold';
+  weight?:
+    | 'thin'
+    | 'extralight'
+    | 'light'
+    | 'regular'
+    | 'medium'
+    | 'semibold'
+    | 'bold'
+    | 'extrabold'
+    | 'black';
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'white';
+  fontFamily?:
+    | 'quicksand'
+    | 'barlow'
+    | 'montserrat'
+    | 'plus-jakarta-sans'
+    | 'dancing-script';
+  italic?: boolean;
 }
 
 export const Text: React.FC<TextProps> = ({
   variant = 'body',
   weight = 'regular',
   color = 'primary',
+  fontFamily = 'quicksand',
+  italic = false,
   className,
   children,
   ...props
@@ -32,17 +51,37 @@ export const Text: React.FC<TextProps> = ({
     }
   };
 
-  const getWeightStyles = () => {
-    switch (weight) {
-      case 'regular':
-        return 'font-quicksand-regular';
-      case 'medium':
-        return 'font-quicksand-medium';
-      case 'bold':
-        return 'font-quicksand-bold';
-      default:
-        return 'font-quicksand-regular';
+  const getFontStyles = () => {
+    const baseFont = fontFamily;
+    const isItalic = italic;
+
+    // Handle Dancing Script separately as it's cursive
+    if (fontFamily === 'dancing-script') {
+      if (weight === 'bold') return 'font-dancing-script-bold';
+      if (weight === 'medium') return 'font-dancing-script-medium';
+      if (weight === 'semibold') return 'font-dancing-script-semibold';
+      return 'font-dancing-script';
     }
+
+    // For other fonts, construct the class name
+    let fontClass = `font-${baseFont}`;
+
+    // Add weight if not regular
+    if (weight !== 'regular') {
+      fontClass += `-${weight}`;
+    }
+
+    // Add italic if specified and supported
+    if (
+      isItalic &&
+      (fontFamily === 'barlow' ||
+        fontFamily === 'montserrat' ||
+        fontFamily === 'plus-jakarta-sans')
+    ) {
+      fontClass += '-italic';
+    }
+
+    return fontClass;
   };
 
   const getColorStyles = () => {
@@ -66,7 +105,7 @@ export const Text: React.FC<TextProps> = ({
 
   return (
     <RNText
-      className={`${getVariantStyles()} ${getWeightStyles()} ${getColorStyles()} ${className}`}
+      className={`${getVariantStyles()} ${getFontStyles()} ${getColorStyles()} ${className || ''}`}
       {...props}
     >
       {children}

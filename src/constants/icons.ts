@@ -17,6 +17,7 @@ export const ICONS = {
 
   // UI Elements
   arrowDown: 'chevron-down-outline' as const,
+  chevronDown: 'chevron-down-outline' as const,
   arrowRight: 'chevron-forward-outline' as const,
   arrowBack: 'chevron-back-outline' as const,
   check: 'checkmark-outline' as const,

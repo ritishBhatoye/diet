@@ -132,3 +132,11 @@ interface GetMenuParams {
   category: string;
   query: string;
 }
+export interface LocationData {
+  id: string;
+  name: string;
+  address: string;
+  lat: number;
+  lon: number;
+  distance?: string;
+}

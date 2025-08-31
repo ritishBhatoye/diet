@@ -3,15 +3,26 @@ import cn from 'clsx';
 import { Tabs } from 'expo-router';
 import { Text, View } from 'react-native';
 
-import { ICONS, images } from '@/constants';
+import { ICONS } from '@/constants';
 
-const TabBarIcon = ({ focused, iconName, title }: unknown) => (
+interface TabBarIconProps {
+  focused: boolean;
+  iconName?: string;
+  title: string;
+  icon?: any;
+}
+
+const TabBarIcon = ({ focused, iconName, title, icon }: TabBarIconProps) => (
   <View className="mt-12 flex min-h-full min-w-20 items-center justify-center gap-1">
-    <Ionicons
-      name={iconName}
-      size={28}
-      color={focused ? '#FE8C00' : '#5D5F6D'}
-    />
+    {iconName ? (
+      <Ionicons
+        name={iconName}
+        size={28}
+        color={focused ? '#FE8C00' : '#5D5F6D'}
+      />
+    ) : (
+      icon
+    )}
     <Text
       className={cn(
         'text-sm font-bold',
@@ -89,7 +100,7 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               title="Profile"
-              icon={images.person}
+              iconName={ICONS.profile}
               focused={focused}
             />
           ),

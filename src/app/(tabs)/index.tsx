@@ -1,11 +1,5 @@
-import {
-  FlatList,
-  Image,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { FlatList, Image, Pressable, ScrollView, View } from 'react-native';
 
 import { MacroStat, NutritionProgress, QuickActionButton } from '@/components';
 import { Text } from '@/components/atoms';
@@ -31,7 +25,10 @@ export default function Index() {
   //   (dailyStats.calories.consumed / dailyStats.calories.target) * 100;
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <LinearGradient
+      colors={['#32CD32', '#90EE90', '#6EA763', '#ffffff']}
+      style={{ flex: 1, paddingVertical: 20 }}
+    >
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
         <TopAppNavigator />
@@ -134,6 +131,6 @@ export default function Index() {
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </LinearGradient>
   );
 }

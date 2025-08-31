@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { PanGestureHandler } from 'react-native';
+// eslint-disable-next-line no-duplicate-imports
 import {
   Animated,
   Dimensions,
@@ -13,25 +14,17 @@ import {
 import { Icon, Text } from '@/components/atoms';
 import { SearchBar } from '@/components/elements';
 import { ICONS } from '@/constants';
+import type { LocationData } from 'types';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const BOTTOM_SHEET_MAX_HEIGHT = SCREEN_HEIGHT * 0.8;
 const BOTTOM_SHEET_MIN_HEIGHT = 60;
 
-interface Location {
-  id: string;
-  name: string;
-  address: string;
-  lat: number;
-  lon: number;
-  distance?: string;
-}
-
 interface LocationBottomSheetProps {
   visible: boolean;
   onClose: () => void;
-  onLocationSelect: (location: Location) => void;
-  currentLocation?: Location;
+  onLocationSelect: (location: LocationData) => void;
+  currentLocation?: LocationData;
 }
 
 export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({
@@ -41,9 +34,9 @@ export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({
   currentLocation,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [locations, setLocations] = useState<Location[]>([]);
+  const [locations, setLocations] = useState<LocationData[]>([]);
   const [loading, setLoading] = useState(false);
-  const [nearbyLocations, setNearbyLocations] = useState<Location[]>([]);
+  const [nearbyLocations, setNearbyLocations] = useState<LocationData[]>([]);
 
   const translateY = useRef(
     new Animated.Value(BOTTOM_SHEET_MAX_HEIGHT)
@@ -66,8 +59,8 @@ export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({
       );
       const data = await response.json();
 
-      const formattedLocations: Location[] = data.map(
-        (item: any, index: number) => ({
+      const formattedLocations: LocationData[] = data.map(
+        (item: unknown, index: number) => ({
           id: `search-${index}`,
           name: item.display_name.split(',')[0],
           address: item.display_name,
@@ -87,7 +80,7 @@ export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({
 
   // Get nearby locations (mock data for demo - in real app, use user's location)
   const getNearbyLocations = () => {
-    const mockNearby: Location[] = [
+    const mockNearby: LocationData[] = [
       {
         id: 'nearby-1',
         name: 'Current Location',
@@ -139,12 +132,12 @@ export const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
 
-  const handleLocationPress = (location: Location) => {
+  const handleLocationPress = (location: LocationData) => {
     onLocationSelect(location);
     onClose();
   };
 
-  const renderLocationItem = (location: Location) => (
+  const renderLocationItem = (location: LocationData) => (
     <TouchableOpacity
       key={location.id}
       onPress={() => handleLocationPress(location)}
