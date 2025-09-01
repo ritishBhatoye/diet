@@ -91,19 +91,23 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (fontsLoaded) {
+      // Hide the expo splash screen once fonts are loaded
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
+  // Show nothing until fonts are loaded - this prevents white screen
   if (!fontsLoaded) {
     return null;
   }
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(auth)" />
-      <Stack.Screen name="(tabs)" />
-      <Stack.Screen name="(onboarding)" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="(splash)" options={{ headerShown: false }} />
+      <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
       <StatusBar backgroundColor="#32CD32" translucent style="inverted" />
     </Stack>
