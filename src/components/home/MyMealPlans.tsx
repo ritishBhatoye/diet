@@ -71,7 +71,7 @@ const MyMealPlans = () => {
   };
 
   return (
-    <View className="flex-1 px-5">
+    <View className="mt-3 flex-1 px-5">
       {/* Header */}
       <View className="mb-4 flex-row items-center justify-between px-5">
         <Text variant="heading" weight="bold">
