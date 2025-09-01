@@ -34,10 +34,23 @@ const TopAppNavigator = () => {
         <View className="flex-col   px-5 pb-3 pt-5">
           <View className="mb-4 flex-row items-center justify-between">
             <View>
-              <Text variant="subheading" weight="bold">
+              <Text fontFamily="plus-jakarta-sans" weight="medium">
                 Good Morning!
               </Text>
-              <Text variant="caption" color="secondary">
+              <Text
+                variant="heading"
+                fontFamily="dancing-script"
+                weight="semibold"
+              >
+                Ritish..
+              </Text>
+
+              <Text
+                variant="caption"
+                color="secondary"
+                fontFamily="barlow"
+                weight="light"
+              >
                 Let&apos;s track your nutrition today
               </Text>
             </View>
@@ -50,7 +63,9 @@ const TopAppNavigator = () => {
             className="flex-row items-center justify-center gap-4 rounded-2xl bg-white p-2 px-4"
           >
             <Icon name={ICONS.location} color="#000000" size="small" />
-            <Text>{selectedLocation?.name || 'Select Location'}</Text>
+            <Text fontFamily="plus-jakarta-sans" weight="medium">
+              {selectedLocation?.name || 'Select Location'}
+            </Text>
             <Icon name={ICONS.chevronDown} color="#000000" size="small" />
           </TouchableOpacity>
 
