@@ -147,8 +147,14 @@ declare global {
     ingredients: string;
     rating: string;
     image: string;
-    
+
   }
+  interface  OnBoardingType{
+    id: number;
+    title: string;
+    subtitle: string;
+    image: string;
+}
 }
 
 

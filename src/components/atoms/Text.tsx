@@ -20,7 +20,12 @@ interface TextProps extends RNTextProps {
     | 'barlow'
     | 'montserrat'
     | 'plus-jakarta-sans'
+    | 'plus-jakarta-sans-extralight'
+    | 'plus-jakarta-sans-medium'
+    | 'plus-jakarta-sans-variable'
+    | 'plus-jakarta-sans-semibold'
     | 'dancing-script';
+
   italic?: boolean;
 }
 
