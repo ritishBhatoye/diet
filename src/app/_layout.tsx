@@ -103,6 +103,8 @@ export default function RootLayout() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(auth)" />
       <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="(onboarding)" />
+
       <StatusBar backgroundColor="#32CD32" translucent style="inverted" />
     </Stack>
   );
