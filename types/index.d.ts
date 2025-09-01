@@ -1,6 +1,6 @@
 // Image file type declarations
-import type { ImageSourcePropType } from "react-native";
-import type { Models } from "react-native-appwrite";
+// import type { ImageSourcePropType } from "react-native";
+// import type { Models } from "react-native-appwrite";
 
 declare module "*.png" {
   const value: any;
@@ -76,67 +76,80 @@ export interface CartStore {
   getTotalPrice: () => number;
 }
 
-interface TabBarIconProps {
-  focused: boolean;
-  icon: ImageSourcePropType;
-  title: string;
+declare global {
+  interface TabBarIconProps {
+    focused: boolean;
+    icon: ImageSourcePropType;
+    title: string;
+  }
+
+  interface PaymentInfoStripeProps {
+    label: string;
+    value: string;
+    labelStyle?: string;
+    valueStyle?: string;
+  }
+
+  interface CustomButtonProps {
+    onPress?: () => void;
+    title?: string;
+    style?: string;
+    leftIcon?: React.ReactNode;
+    textStyle?: string;
+    isLoading?: boolean;
+  }
+
+  interface CustomHeaderProps {
+    title?: string;
+  }
+
+  interface CustomInputProps {
+    placeholder?: string;
+    value?: string;
+    onChangeText?: (text: string) => void;
+    label: string;
+    secureTextEntry?: boolean;
+    keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+  }
+
+  interface ProfileFieldProps {
+    label: string;
+    value: string;
+    icon: ImageSourcePropType;
+  }
+
+  interface CreateUserParams {
+    email: string;
+    password: string;
+    name: string;
+  }
+
+  interface SignInParams {
+    email: string;
+    password: string;
+  }
+
+  interface GetMenuParams {
+    category: string;
+    query: string;
+  }
+
+  interface LocationData {
+    id: string;
+    name: string;
+    address: string;
+    lat: number;
+    lon: number;
+    distance?: string;
+  }
+  interface FoodItemCardType {
+    meal: string;
+    ingredients: string;
+    rating: string;
+    image: string;
+    
+  }
 }
 
-interface PaymentInfoStripeProps {
-  label: string;
-  value: string;
-  labelStyle?: string;
-  valueStyle?: string;
-}
 
-interface CustomButtonProps {
-  onPress?: () => void;
-  title?: string;
-  style?: string;
-  leftIcon?: React.ReactNode;
-  textStyle?: string;
-  isLoading?: boolean;
-}
 
-interface CustomHeaderProps {
-  title?: string;
-}
-
-interface CustomInputProps {
-  placeholder?: string;
-  value?: string;
-  onChangeText?: (text: string) => void;
-  label: string;
-  secureTextEntry?: boolean;
-  keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
-}
-
-interface ProfileFieldProps {
-  label: string;
-  value: string;
-  icon: ImageSourcePropType;
-}
-
-interface CreateUserParams {
-  email: string;
-  password: string;
-  name: string;
-}
-
-interface SignInParams {
-  email: string;
-  password: string;
-}
-
-interface GetMenuParams {
-  category: string;
-  query: string;
-}
-export interface LocationData {
-  id: string;
-  name: string;
-  address: string;
-  lat: number;
-  lon: number;
-  distance?: string;
-}

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 
 import { ICONS } from '@/constants';
-import type { LocationData } from 'types';
 
 import { Icon, Text } from '../atoms';
 import { LocationBottomSheet } from '../elements';

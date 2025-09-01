@@ -3,6 +3,8 @@ import { FlatList, Image, Pressable, ScrollView, View } from 'react-native';
 
 import { MacroStat, NutritionProgress, QuickActionButton } from '@/components';
 import { Text } from '@/components/atoms';
+import BestFood from '@/components/home/BestFood';
+import MyMealPlans from '@/components/home/MyMealPlans';
 import TopAppNavigator from '@/components/home/TopAppNavigator';
 import { ICONS, offers } from '@/constants';
 
@@ -86,6 +88,12 @@ export default function Index() {
           </View>
         </View>
 
+        <BestFood
+          handleViewAll={() => {
+            //
+          }}
+        />
+        <MyMealPlans />
         {/* Meal Plans */}
         <View className="mx-5 mb-4 mt-6">
           <Text variant="subheading" weight="bold" className="mb-3">
