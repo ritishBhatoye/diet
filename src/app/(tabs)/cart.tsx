@@ -138,7 +138,7 @@ const Cart = () => {
                   className="mb-3 rounded-xl bg-white p-4 shadow-sm"
                 >
                   <View className="flex-row items-center">
-                    <View className="mr-4 h-16 w-16 items-center justify-center rounded-xl bg-gray-100">
+                    <View className="mr-4 h-16 w-16 items-center justify-center rounded-xl bg-gray-100/20 ">
                       <Image
                         source={item.image}
                         className="h-12 w-12"

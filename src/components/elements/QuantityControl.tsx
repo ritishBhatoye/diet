@@ -19,24 +19,22 @@ export const QuantityControl: React.FC<QuantityControlProps> = ({
   onIncrease,
   onDecrease,
   className,
-}) => {
-  return (
-    <View className={`flex-row items-center ${className}`}>
-      <TouchableOpacity
-        onPress={onDecrease}
-        className="h-8 w-8 items-center justify-center rounded-full bg-gray-200"
-      >
-        <Icon name={ICONS.minus} size="small" color="#6B7280" />
-      </TouchableOpacity>
-      <Text variant="body" weight="bold" className="mx-3">
-        {quantity} {unit}
-      </Text>
-      <TouchableOpacity
-        onPress={onIncrease}
-        className="h-8 w-8 items-center justify-center rounded-full bg-green-500"
-      >
-        <Icon name={ICONS.add} size="small" color="#FFFFFF" />
-      </TouchableOpacity>
-    </View>
-  );
-};
+}) => (
+  <View className={`flex-row items-center ${className}`}>
+    <TouchableOpacity
+      onPress={onDecrease}
+      className="h-8 w-8 items-center justify-center rounded-full bg-gray-100/20 "
+    >
+      <Icon name={ICONS.minus} size="small" color="#000000" />
+    </TouchableOpacity>
+    <Text variant="body" weight="bold" className="mx-3">
+      {quantity} {unit}
+    </Text>
+    <TouchableOpacity
+      onPress={onIncrease}
+      className="h-8 w-8 items-center justify-center rounded-full bg-green-500"
+    >
+      <Icon name={ICONS.add} size="small" color="#FFFFFF" />
+    </TouchableOpacity>
+  </View>
+);
