@@ -5,7 +5,7 @@ import { Button } from '@/components/atoms/Button';
 
 export const AuthActionButtons = () => {
   const handleGetStarted = () => {
-    router.push('/(auth)/register');
+    router.push('/(tabs)/index');
   };
 
   const handleLogin = () => {
