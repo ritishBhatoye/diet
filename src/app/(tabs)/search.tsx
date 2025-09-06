@@ -43,7 +43,7 @@ const Search = () => {
   const [selectedCategory, setSelectedCategory] = useState('1');
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-gray-50 ">
       {/* Header */}
       <View className="bg-white px-5 pb-3 pt-5">
         <Text variant="heading" weight="bold" className="mb-4">

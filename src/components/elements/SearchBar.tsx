@@ -19,24 +19,22 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = 'Search...',
   onClear,
   className,
-}) => {
-  return (
-    <View
-      className={`flex-row items-center rounded-xl bg-gray-100 px-4 py-3 ${className}`}
-    >
-      <Icon name={ICONS.search} size="small" color="#6B7280" className="mr-3" />
-      <TextInput
-        placeholder={placeholder}
-        value={value}
-        onChangeText={onChangeText}
-        className="flex-1 font-quicksand-medium text-base text-gray-700"
-        placeholderTextColor="#9CA3AF"
-      />
-      {value.length > 0 && onClear && (
-        <TouchableOpacity onPress={onClear}>
-          <Icon name={ICONS.close} size="small" color="#6B7280" />
-        </TouchableOpacity>
-      )}
-    </View>
-  );
-};
+}) => (
+  <View
+    className={`flex-row items-center rounded-xl bg-gray-100/20 px-4 py-3 ${className}`}
+  >
+    <Icon name={ICONS.search} size="small" color="#6B7280" className="mr-3" />
+    <TextInput
+      placeholder={placeholder}
+      value={value}
+      onChangeText={onChangeText}
+      className="flex-1 font-quicksand-medium text-base text-gray-700"
+      placeholderTextColor="#9CA3AF"
+    />
+    {value.length > 0 && onClear && (
+      <TouchableOpacity onPress={onClear}>
+        <Icon name={ICONS.close} size="small" color="#6B7280" />
+      </TouchableOpacity>
+    )}
+  </View>
+);

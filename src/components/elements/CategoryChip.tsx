@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+
 import { Text } from '../atoms';
 
 interface CategoryChipProps {
@@ -14,20 +15,18 @@ export const CategoryChip: React.FC<CategoryChipProps> = ({
   isSelected = false,
   onPress,
   className,
-}) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      className={`rounded-full px-4 py-2 ${
-        isSelected ? 'bg-green-500' : 'bg-gray-200'
-      } ${className}`}
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    className={`rounded-full px-4 py-2 ${
+      isSelected ? 'bg-green-500' : 'bg-gray-100/20 '
+    } ${className}`}
+  >
+    <Text
+      weight="medium"
+      className={isSelected ? 'text-white' : 'text-gray-600'}
     >
-      <Text
-        weight="medium"
-        className={isSelected ? 'text-white' : 'text-gray-600'}
-      >
-        {title}
-      </Text>
-    </TouchableOpacity>
-  );
-};
+      {title}
+    </Text>
+  </TouchableOpacity>
+);

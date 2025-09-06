@@ -1,9 +1,29 @@
 {
+  // 🛠 Code Actions
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
   },
-  "kiroAgent.configureMCP": "Disabled",
-  "editor.suggestOnTriggerCharacters": false
+
+  "kiroAgent.configureMCP": "enabled",
+
+  // 🚫 Disable VS Code IntelliSense Autocomplete
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.parameterHints.enabled": false,
+  "typescript.suggest.enabled": false,
+  "javascript.suggest.enabled": false,
+  "editor.suggest.showSuggestions": false,
+
+  // 🚫 Disable Inline Ghost Text
+  "editor.inlineSuggest.enabled": false,
+
+  // 🚫 Disable Cursor AI Autocomplete
+  "cursor.autocomplete.enabled": false,
+  "cursor.inlineSuggestions.enabled": false
 }

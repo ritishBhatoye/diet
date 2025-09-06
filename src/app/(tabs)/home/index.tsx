@@ -31,12 +31,12 @@ export default function Index() {
       colors={['#32CD32', '#90EE90', '#6EA763', '#ffffff']}
       style={{ flex: 1, paddingVertical: 20 }}
     >
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+      <ScrollView className="flex-1 " showsVerticalScrollIndicator={false}>
         {/* Header */}
         <TopAppNavigator />
 
         {/* Daily Progress Card */}
-        <View className="mx-5 mt-4 rounded-2xl bg-white p-4 shadow-sm">
+        <View className="mx-5 mt-4 rounded-2xl bg-white  p-4 shadow-sm">
           <Text variant="subheading" weight="bold" className="mb-4">
             Today&apos;s Progress
           </Text>

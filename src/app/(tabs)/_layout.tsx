@@ -16,7 +16,7 @@ const TabBarIcon = ({ focused, iconName, title, icon }: TabBarIconProps) => (
   <View className="mt-12 flex min-h-full min-w-20 items-center justify-center gap-1">
     {iconName ? (
       <Ionicons
-        name={iconName}
+        name={iconName as any}
         size={28}
         color={focused ? '#FE8C00' : '#5D5F6D'}
       />
@@ -63,7 +63,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home/index"
         options={{
           title: 'Home',
           tabBarIcon: ({ focused }) => (
