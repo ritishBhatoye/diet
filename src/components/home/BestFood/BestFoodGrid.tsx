@@ -1,22 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
-import {
-  FlatList,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+import { FlatList, TouchableOpacity, useWindowDimensions } from 'react-native';
 
 import { fetchFoodItems } from '@/api/sanity';
 import FoodItemCard from '@/components/elements/Cards/FoodItemCard';
 import { foodItemsData } from '@/data/foodItemsData';
 
 interface Props {
-  limit?: number;
-  layout?: 'row' | 'grid';
-  columns?: number; // used when layout = 'grid'
+  columns?: number;
 }
 
-const BestFoodView = ({ limit, layout = 'row', columns = 2 }: Props) => {
+const BestFoodGrid = ({ columns = 2 }: Props) => {
   const [remoteItems, setRemoteItems] = useState<FoodItemCardType[]>([]);
   const { width: screenWidth } = useWindowDimensions();
 
@@ -35,49 +28,31 @@ const BestFoodView = ({ limit, layout = 'row', columns = 2 }: Props) => {
   }, []);
 
   const data: FoodItemCardType[] = useMemo(() => {
-    const merged = [...remoteItems, ...foodItemsData];
-    return typeof limit === 'number'
-      ? merged.slice(0, Math.max(0, limit))
-      : merged;
-  }, [remoteItems, limit]);
+    return [...remoteItems, ...foodItemsData];
+  }, [remoteItems]);
 
-  const isRow = layout === 'row';
-
-  const sidePadding = 12; // px-5
-  const gap = 16; // item gap
+  const sidePadding = 20;
+  const gap = 16;
   const availableWidth = screenWidth - sidePadding * 2 - (columns - 1) * gap;
   const itemWidth = Math.floor(availableWidth / columns);
 
   return (
     <FlatList
       data={data}
-      horizontal={isRow}
-      numColumns={isRow ? 1 : columns}
-      showsHorizontalScrollIndicator={false}
+      numColumns={columns}
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={{
         paddingHorizontal: sidePadding,
         paddingVertical: 12,
       }}
-      // We manage gaps manually to avoid clipping
-      columnWrapperStyle={undefined}
-      ItemSeparatorComponent={() =>
-        isRow ? <View style={{ width: gap }} /> : null
-      }
-      renderItem={({
-        item,
-        index,
-      }: {
-        item: FoodItemCardType;
-        index: number;
-      }) => {
-        const isEndOfRow = !isRow && (index + 1) % columns === 0;
-        const containerStyle = isRow
-          ? undefined
-          : {
-              width: itemWidth,
-              marginBottom: 16,
-              marginRight: isEndOfRow ? 0 : gap,
-            };
+      columnWrapperStyle={{ columnGap: gap }}
+      renderItem={({ item, index }) => {
+        const isEndOfRow = (index + 1) % columns === 0;
+        const containerStyle = {
+          width: itemWidth,
+          marginBottom: 16,
+          marginRight: isEndOfRow ? 0 : gap,
+        } as const;
         return (
           <TouchableOpacity
             key={item.image ?? item.meal}
@@ -92,4 +67,4 @@ const BestFoodView = ({ limit, layout = 'row', columns = 2 }: Props) => {
   );
 };
 
-export default BestFoodView;
+export default BestFoodGrid;
