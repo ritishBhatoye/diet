@@ -6,10 +6,11 @@ import { ICONS } from '@/constants';
 const ProfileLayout = () => (
   <Stack>
     <Stack.Screen
-      name="profile"
+      name="index"
       options={{
         headerTitleStyle: { fontSize: 18, fontWeight: 600 },
         headerTitle: 'Profile',
+
         headerLeft: () => (
           <Ionicons name="backspace-outline" color={'dark-100'} size={16} />
         ),
