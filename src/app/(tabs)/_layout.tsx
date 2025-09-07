@@ -3,6 +3,7 @@ import cn from 'clsx';
 import { Tabs } from 'expo-router';
 import { Text, View } from 'react-native';
 
+import GlassTabBarBackground from '@/components/atoms/GlassTabBarBackground';
 import { ICONS } from '@/constants';
 
 interface TabBarIconProps {
@@ -35,29 +36,27 @@ const TabBarIcon = ({ focused, iconName, title, icon }: TabBarIconProps) => (
 );
 
 export default function TabLayout() {
-  // const { isAuthenticated } = useAuthStore();
-
-  // if(!isAuthenticated) return <Redirect href="/sign-in" />
-
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
+
+        // Glass Effect
+        tabBarBackground: () => <GlassTabBarBackground />,
+
+        // Floating rounded style
         tabBarStyle: {
-          borderTopLeftRadius: 50,
-          borderTopRightRadius: 50,
-          borderBottomLeftRadius: 50,
-          borderBottomRightRadius: 50,
-          marginHorizontal: 20,
-          height: 80,
           position: 'absolute',
           bottom: 40,
-          backgroundColor: 'white',
-          shadowColor: '#1a1a1a',
-          shadowOffset: { width: 0, height: 2 },
+          marginHorizontal: 20,
+          height: 80,
+          borderRadius: 50,
+          backgroundColor: 'transparent', // must be transparent for blur to work
+          overflow: 'hidden', // ensures rounded corners
+          shadowColor: '#000',
           shadowOpacity: 0.1,
-          shadowRadius: 4,
+          shadowRadius: 10,
           elevation: 5,
         },
       }}
