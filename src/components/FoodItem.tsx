@@ -26,7 +26,7 @@ export const FoodItem: React.FC<FoodItemProps> = ({
     onPress={onPress}
     className="mb-3 flex-row items-center rounded-xl bg-white p-4 shadow-sm"
   >
-    <View className="mr-4 h-16 w-16 items-center justify-center rounded-xl bg-gray-100/20 ">
+    <View className="mr-4 h-16 w-16 items-center justify-center rounded-xl bg-gray-500/20 ">
       <Image source={image} className="h-12 w-12" resizeMode="contain" />
     </View>
     <View className="flex-1">

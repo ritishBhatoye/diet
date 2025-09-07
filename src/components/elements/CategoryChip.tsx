@@ -19,7 +19,7 @@ export const CategoryChip: React.FC<CategoryChipProps> = ({
   <TouchableOpacity
     onPress={onPress}
     className={`rounded-full px-4 py-2 ${
-      isSelected ? 'bg-green-500' : 'bg-gray-100/20 '
+      isSelected ? 'bg-green-500' : 'bg-gray-500/20 '
     } ${className}`}
   >
     <Text

@@ -10,21 +10,74 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FE8C00',
+        // Diet app brand colors
+        primary: {
+          DEFAULT: '#22C55E', // green-500
+          50: '#F0FDF4',
+          100: '#DCFCE7',
+          200: '#BBF7D0',
+          300: '#86EFAC',
+          400: '#4ADE80',
+          500: '#22C55E',
+          600: '#16A34A',
+          700: '#15803D',
+          800: '#166534',
+          900: '#14532D',
+        },
+        secondary: {
+          DEFAULT: '#34D399', // teal/green accent
+          50: '#F0FDFA',
+          100: '#CCFBF1',
+          200: '#99F6E4',
+          300: '#5EEAD4',
+          400: '#2DD4BF',
+          500: '#14B8A6',
+          600: '#0D9488',
+          700: '#0F766E',
+          800: '#115E59',
+          900: '#134E4A',
+        },
+        tertiary: {
+          DEFAULT: '#84CC16', // lime accent
+          50: '#F7FEE7',
+          100: '#ECFCCB',
+          200: '#D9F99D',
+          300: '#BEF264',
+          400: '#A3E635',
+          500: '#84CC16',
+          600: '#65A30D',
+          700: '#4D7C0F',
+          800: '#3F6212',
+          900: '#365314',
+        },
+        accent: {
+          DEFAULT: '#3B82F6', // blue accent
+          600: '#2563EB',
+        },
         white: {
           DEFAULT: '#ffffff',
           100: '#fafafa',
           200: '#FE8C00',
         },
         gray: {
-          100: '#878787',
-          200: '#878787',
+          50: '#F9FAFB',
+          100: '#F3F4F6',
+          200: '#E5E7EB',
+          300: '#D1D5DB',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
+          800: '#1F2937',
+          900: '#111827',
         },
         dark: {
           100: '#181C2E',
         },
+        success: '#16A34A',
         error: '#F14141',
-        success: '#2F9B65',
+        warning: '#F59E0B',
+        info: '#0EA5E9',
       },
       fontFamily: {
         // Quicksand fonts

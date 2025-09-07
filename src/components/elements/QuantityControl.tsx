@@ -23,7 +23,7 @@ export const QuantityControl: React.FC<QuantityControlProps> = ({
   <View className={`flex-row items-center ${className}`}>
     <TouchableOpacity
       onPress={onDecrease}
-      className="h-8 w-8 items-center justify-center rounded-full bg-gray-100/20 "
+      className="h-8 w-8 items-center justify-center rounded-full bg-gray-500/20 "
     >
       <Icon name={ICONS.minus} size="small" color="#000000" />
     </TouchableOpacity>

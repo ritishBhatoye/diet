@@ -1,4 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
 import { FlatList, Image, Pressable, ScrollView, View } from 'react-native';
 
 import { MacroStat, NutritionProgress, QuickActionButton } from '@/components';
@@ -90,8 +91,9 @@ export default function Index() {
 
         <BestFood
           handleViewAll={() => {
-            //
+            router.push('/(tabs)/home/best-food');
           }}
+          limit={8}
         />
         <MyMealPlans />
         {/* Meal Plans */}

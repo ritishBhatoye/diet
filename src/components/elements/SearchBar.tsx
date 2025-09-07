@@ -21,7 +21,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   className,
 }) => (
   <View
-    className={`flex-row items-center rounded-xl bg-gray-100/20 px-4 py-3 ${className}`}
+    className={`flex-row items-center rounded-xl bg-gray-500/20 px-4 py-3 ${className}`}
   >
     <Icon name={ICONS.search} size="small" color="#6B7280" className="mr-3" />
     <TextInput
