@@ -2,27 +2,27 @@
 // import type { ImageSourcePropType } from "react-native";
 // import type { Models } from "react-native-appwrite";
 
-declare module "*.png" {
+declare module '*.png' {
   const value: any;
   export default value;
 }
 
-declare module "*.jpg" {
+declare module '*.jpg' {
   const value: any;
   export default value;
 }
 
-declare module "*.jpeg" {
+declare module '*.jpeg' {
   const value: any;
   export default value;
 }
 
-declare module "*.gif" {
+declare module '*.gif' {
   const value: any;
   export default value;
 }
 
-declare module "*.svg" {
+declare module '*.svg' {
   const value: any;
   export default value;
 }
@@ -67,7 +67,7 @@ export interface CartItemType {
 
 export interface CartStore {
   items: CartItemType[];
-  addItem: (item: Omit<CartItemType, "quantity">) => void;
+  addItem: (item: Omit<CartItemType, 'quantity'>) => void;
   removeItem: (id: string, customizations?: CartCustomization[]) => void;
   increaseQty: (id: string, customizations?: CartCustomization[]) => void;
   decreaseQty: (id: string, customizations?: CartCustomization[]) => void;
@@ -109,7 +109,7 @@ declare global {
     onChangeText?: (text: string) => void;
     label: string;
     secureTextEntry?: boolean;
-    keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+    keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   }
 
   interface ProfileFieldProps {
@@ -142,20 +142,26 @@ declare global {
     lon: number;
     distance?: string;
   }
-  interface FoodItemCardType {
-    meal: string;
-    ingredients: string;
-    rating: string;
-    image: string;
 
+  // interface FoodItemType {
+  //   id?: string;
+  //   name: string;
+  //   description: string;
+  //   rating: string;
+  //   image?: any;
+  // }
+  // Unified CMS/UI interface
+  interface FoodItemType {
+    _id: string;
+    name: string;
+    description?: string;
+    calories?: number;
+    image: { asset: any };
   }
-  interface  OnBoardingType{
+  interface OnBoardingType {
     id: number;
     title: string;
     subtitle: string;
     image: string;
+  }
 }
-}
-
-
-

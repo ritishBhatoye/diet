@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 
 import BestFoodHeader from './BestFood/BestFoodHeader';
-import BestFoodView from './BestFood/BestFoodView';
+import BestFoodRow from './BestFood/BestFoodRow';
 
 interface props {
   handleViewAll: () => void;
@@ -10,7 +10,7 @@ interface props {
 const BestFood = ({ handleViewAll }: props) => (
   <View className="mt-4 gap-5 px-5">
     <BestFoodHeader handleViewAll={handleViewAll} />
-    <BestFoodView limit={8} />
+    <BestFoodRow limit={8} />
   </View>
 );
 

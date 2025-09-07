@@ -93,7 +93,6 @@ export default function Index() {
           handleViewAll={() => {
             router.push('/(tabs)/home/best-food');
           }}
-          limit={8}
         />
         <MyMealPlans />
         {/* Meal Plans */}

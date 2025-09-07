@@ -1,14 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   FlatList,
   TouchableOpacity,
-  View,
   useWindowDimensions,
+  View,
 } from 'react-native';
 
-import { fetchFoodItems } from '@/api/sanity';
 import FoodItemCard from '@/components/elements/Cards/FoodItemCard';
-import { foodItemsData } from '@/data/foodItemsData';
+import { useFoodStore } from '@/store/food';
 
 interface Props {
   limit?: number;
@@ -17,29 +16,20 @@ interface Props {
 }
 
 const BestFoodView = ({ limit, layout = 'row', columns = 2 }: Props) => {
-  const [remoteItems, setRemoteItems] = useState<FoodItemCardType[]>([]);
+  const items = useFoodStore(s => s.items);
+  const fetch = useFoodStore(s => s.fetch);
   const { width: screenWidth } = useWindowDimensions();
 
   useEffect(() => {
-    fetchFoodItems()
-      .then(items =>
-        items.map(it => ({
-          meal: it.name,
-          ingredients: it.description ?? `${it.calories ?? ''} kcal`,
-          rating: '4.5',
-          image: undefined,
-        }))
-      )
-      .then(mapped => setRemoteItems(mapped))
-      .catch(() => setRemoteItems([]));
-  }, []);
+    fetch();
+  }, [fetch]);
 
-  const data: FoodItemCardType[] = useMemo(() => {
-    const merged = [...remoteItems, ...foodItemsData];
+  const data: FoodItemType[] = useMemo(() => {
+    const merged = [...items];
     return typeof limit === 'number'
       ? merged.slice(0, Math.max(0, limit))
       : merged;
-  }, [remoteItems, limit]);
+  }, [items, limit]);
 
   const isRow = layout === 'row';
 
@@ -63,13 +53,7 @@ const BestFoodView = ({ limit, layout = 'row', columns = 2 }: Props) => {
       ItemSeparatorComponent={() =>
         isRow ? <View style={{ width: gap }} /> : null
       }
-      renderItem={({
-        item,
-        index,
-      }: {
-        item: FoodItemCardType;
-        index: number;
-      }) => {
+      renderItem={({ item, index }: { item: FoodItemType; index: number }) => {
         const isEndOfRow = !isRow && (index + 1) % columns === 0;
         const containerStyle = isRow
           ? undefined
@@ -80,8 +64,8 @@ const BestFoodView = ({ limit, layout = 'row', columns = 2 }: Props) => {
             };
         return (
           <TouchableOpacity
-            key={item.image ?? item.meal}
-            style={containerStyle as any}
+            key={item._id ?? item.name ?? `item-${index}`}
+            style={containerStyle}
           >
             <FoodItemCard item={item} cardType={'shrink'} />
           </TouchableOpacity>

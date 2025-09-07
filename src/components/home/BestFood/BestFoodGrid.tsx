@@ -3,33 +3,29 @@ import { FlatList, TouchableOpacity, useWindowDimensions } from 'react-native';
 
 import { fetchFoodItems } from '@/api/sanity';
 import FoodItemCard from '@/components/elements/Cards/FoodItemCard';
-import { foodItemsData } from '@/data/foodItemsData';
 
 interface Props {
   columns?: number;
 }
 
 const BestFoodGrid = ({ columns = 2 }: Props) => {
-  const [remoteItems, setRemoteItems] = useState<FoodItemCardType[]>([]);
+  const [remoteItems, setRemoteItems] = useState<any[]>([]);
   const { width: screenWidth } = useWindowDimensions();
 
   useEffect(() => {
     fetchFoodItems()
-      .then(items =>
-        items.map(it => ({
-          meal: it.name,
-          ingredients: it.description ?? `${it.calories ?? ''} kcal`,
-          rating: '4.5',
-          image: undefined,
-        }))
-      )
-      .then(mapped => setRemoteItems(mapped))
+      .then(items => {
+        console.log(
+          '[CMS] BestFoodGrid raw items:',
+          JSON.stringify(items, null, 2)
+        );
+        setRemoteItems(items);
+        return items;
+      })
       .catch(() => setRemoteItems([]));
   }, []);
 
-  const data: FoodItemCardType[] = useMemo(() => {
-    return [...remoteItems, ...foodItemsData];
-  }, [remoteItems]);
+  const data: any[] = useMemo(() => [...remoteItems], [remoteItems]);
 
   const sidePadding = 20;
   const gap = 16;
@@ -55,7 +51,7 @@ const BestFoodGrid = ({ columns = 2 }: Props) => {
         } as const;
         return (
           <TouchableOpacity
-            key={item.image ?? item.meal}
+            key={item?._id ?? item?.id ?? item?.image ?? item?.name}
             style={containerStyle as any}
           >
             <FoodItemCard item={item} cardType={'shrink'} />
