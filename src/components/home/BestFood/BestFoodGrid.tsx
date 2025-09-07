@@ -3,6 +3,7 @@ import { FlatList, TouchableOpacity, useWindowDimensions } from 'react-native';
 
 import { fetchFoodItems } from '@/api/sanity';
 import FoodItemCard from '@/components/elements/Cards/FoodItemCard';
+import { router } from 'expo-router';
 
 interface Props {
   columns?: number;
@@ -52,6 +53,12 @@ const BestFoodGrid = ({ columns = 2 }: Props) => {
         return (
           <TouchableOpacity
             key={item?._id ?? item?.id ?? item?.image ?? item?.name}
+            onPress={() =>
+              router.push({
+                pathname: '/(tabs)/home/food/[id]',
+                params: { id: item?._id },
+              })
+            }
             style={containerStyle as any}
           >
             <FoodItemCard item={item} cardType={'shrink'} />

@@ -3,6 +3,7 @@ import { FlatList, TouchableOpacity, View } from 'react-native';
 
 import FoodItemCard from '@/components/elements/Cards/FoodItemCard';
 import { useFoodStore } from '@/store/food';
+import { router } from 'expo-router';
 
 interface Props {
   limit?: number;
@@ -32,6 +33,12 @@ const BestFoodRow = ({ limit }: Props) => {
       ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
       renderItem={({ item }: { item: any }) => (
         <TouchableOpacity
+          onPress={() =>
+            router.push({
+              pathname: '/(tabs)/home/food/[id]',
+              params: { id: item?._id },
+            })
+          }
           key={item?._id ?? item?.id ?? item?.image ?? item?.name}
         >
           <FoodItemCard item={item} cardType={'shrink'} />

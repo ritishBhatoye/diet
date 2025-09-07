@@ -4,6 +4,7 @@ import { router, Stack } from 'expo-router';
 const HomeLayout = () => (
   <Stack>
     <Stack.Screen options={{ headerShown: false }} name="index" />
+    <Stack.Screen options={{ headerShown: false }} name="food/[id]" />
     <Stack.Screen
       options={{
         headerShown: true,
