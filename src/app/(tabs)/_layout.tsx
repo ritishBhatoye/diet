@@ -18,15 +18,15 @@ const TabBarIcon = ({ focused, iconName, title, icon }: TabBarIconProps) => (
       <Ionicons
         name={iconName as any}
         size={28}
-        color={focused ? '#FE8C00' : '#5D5F6D'}
+        color={focused ? '#22C55E' : '#4B5563'}
       />
     ) : (
       icon
     )}
     <Text
       className={cn(
-        'text-sm font-bold',
-        focused ? 'text-primary' : 'text-gray-200'
+        'text-sm font-semibold',
+        focused ? 'text-primary' : 'text-gray-600'
       )}
     >
       {title}
