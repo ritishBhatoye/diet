@@ -100,7 +100,7 @@ const MyMealPlans = () => {
             <TouchableOpacity
               onPress={() => setSelectedDay(item.id)}
               className={` rounded-full px-8  py-3 ${
-                selectedDay === item.id ? 'bg-green-500' : 'bg-gray-100'
+                selectedDay === item.id ? 'bg-green-500' : 'bg-gray-50'
               }`}
             >
               <Text
