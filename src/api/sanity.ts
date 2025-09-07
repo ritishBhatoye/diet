@@ -1,21 +1,21 @@
-import {createClient} from '@sanity/client'
+import { createClient } from '@sanity/client';
 
 export const sanityClient = createClient({
   projectId: 'arqvnvf5',
   dataset: 'production',
   apiVersion: '2023-01-01',
   useCdn: true,
-})
+});
 
-export type FoodItem = {
-  _id: string
-  name: string
-  description?: string
-  calories?: number
+interface FoodItem {
+  _id: string;
+  name: string;
+  description?: string;
+  calories?: number;
   image?: {
-    asset?: { _ref: string }
-    alt?: string
-  }
+    asset?: { _ref: string };
+    alt?: string;
+  };
 }
 
 export async function fetchFoodItems(): Promise<FoodItem[]> {
@@ -24,8 +24,6 @@ export async function fetchFoodItems(): Promise<FoodItem[]> {
     name,
     description,
     calories,
-  }`
-  return sanityClient.fetch(query)
+  }`;
+  return sanityClient.fetch(query);
 }
-
-
