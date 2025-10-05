@@ -23,17 +23,18 @@ export const useScanStore = create<ScanState>(set => ({
   fetchNutritionData: async query => {
     try {
       set({ loading: true, error: null });
-      const response = await axios.post(
-        'https://trackapi.nutritionix.com/v2/natural/nutrients',
-        { query },
+      const response = await axios.get(
+        `https://world.openfoodfacts.org/cgi/search.pl`,
         {
-          headers: {
-            'x-app-id': 'YOUR_APP_ID',
-            'x-app-key': 'YOUR_APP_KEY',
-            'Content-Type': 'application/json',
+          params: {
+            search_terms: query,
+            search_simple: 1,
+            action: 'process',
+            json: 1,
           },
         }
       );
+
       set({ result: response.data, loading: false });
     } catch (err: any) {
       set({ error: err.message, loading: false });
