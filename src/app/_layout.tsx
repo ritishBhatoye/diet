@@ -1,13 +1,13 @@
-import { useFonts } from 'expo-font';
-
 // eslint-disable-next-line import/order
 import { FONTS } from '@/constants/font';
-
 import '@/global.css';
+import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { Host } from 'react-native-portalize';
+import { ToastProvider } from 'react-native-toast-notifications';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete
 SplashScreen.preventAutoHideAsync();
@@ -102,14 +102,18 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(splash)" options={{ headerShown: false }} />
-      <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    <ToastProvider>
+      <Host>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(splash)" options={{ headerShown: false }} />
+          <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
-      <StatusBar backgroundColor="#32CD32" translucent style="inverted" />
-    </Stack>
+          <StatusBar backgroundColor="#32CD32" translucent style="inverted" />
+        </Stack>
+      </Host>
+    </ToastProvider>
   );
 }

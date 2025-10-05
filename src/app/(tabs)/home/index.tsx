@@ -1,5 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -8,9 +9,11 @@ import {
   ScrollView,
   View,
 } from 'react-native';
+import { Portal } from 'react-native-portalize';
 
 import { MacroStat, NutritionProgress, QuickActionButton } from '@/components';
 import { Text } from '@/components/atoms';
+import CustomModal from '@/components/elements/CustomModal';
 import BestFood from '@/components/home/BestFood';
 import MyMealPlans from '@/components/home/MyMealPlans';
 import TopAppNavigator from '@/components/home/TopAppNavigator';
@@ -25,22 +28,21 @@ const dailyStats = {
   carbs: { consumed: 150, target: 200 },
 };
 
-export default function Index() {
+export default function HomeScreen() {
   // Handler functions for each action
   const { result, pickAndUploadImage } = useUploadImage();
+  const [isScanModalOpen, setIsScanModalOpen] = useState(false);
 
   const handleLogMeal = () => {
     // TODO: open bottom sheet logic
   };
   const handleScanFood = async () => {
-    await pickAndUploadImage();
-    if (result?.calories) {
-      Alert.alert(
-        'Calories Detected',
-        `This food has ~${result.calories} kcal.`
-      );
-    } else if (result?.error) {
-      Alert.alert('Error', result.error);
+    const scanResult: any = await pickAndUploadImage();
+    console.log(' scanResult ', scanResult);
+    if (scanResult?.calories) {
+      setIsScanModalOpen(true);
+    } else if (scanResult?.error) {
+      Alert.alert('Error', scanResult.error);
     }
   };
   const handleAddWater = () => {
@@ -51,6 +53,7 @@ export default function Index() {
   };
 
   // Map action IDs to handlers
+
   const actionHandlers: Record<number, () => void> = {
     1: handleLogMeal,
     2: handleScanFood,
@@ -66,6 +69,16 @@ export default function Index() {
       colors={['#32CD32', '#90EE90', '#6EA763', '#ffffff']}
       style={{ flex: 1, paddingVertical: 20 }}
     >
+      <Portal>
+        <CustomModal
+          visible={isScanModalOpen}
+          title="Scan Result"
+          message={`Your scanned food has ${result?.calories} calories.`}
+          onClose={() => setIsScanModalOpen(false)}
+          confirmText="OK"
+          onConfirm={() => setIsScanModalOpen(false)}
+        />
+      </Portal>
       <ScrollView className="flex-1 " showsVerticalScrollIndicator={false}>
         {/* Header */}
         <TopAppNavigator />

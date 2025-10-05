@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { Alert } from 'react-native';
-
+import { useToast } from 'react-native-toast-notifications';
 interface UploadResult {
   calories?: number | null;
   error?: string | null;
@@ -21,11 +21,13 @@ async function guessFoodNameFromImage(imageUri: string): Promise<string> {
 }
 
 export function useUploadImage() {
+  const toast = useToast();
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<UploadResult | null>(null);
 
-  const pickAndUploadImage = async () => {
+  const pickAndUploadImage = async (): Promise<UploadResult | null> => {
     setResult(null);
+    let finalResult: UploadResult | null = null;
     // Ask user: Camera or Gallery
     let pickerResult: ImagePicker.ImagePickerResult | null = null;
     await new Promise<void>(resolve => {
@@ -78,7 +80,7 @@ export function useUploadImage() {
         'canceled' in pickerResult &&
         (pickerResult as any).canceled)
     )
-      return;
+      return null;
     const imageUri =
       typeof pickerResult === 'object' &&
       'assets' in pickerResult &&
@@ -87,13 +89,19 @@ export function useUploadImage() {
         ? (pickerResult as any).assets[0].uri
         : null;
     if (!imageUri) {
-      setResult({ error: 'No image selected.' });
-      return;
+      finalResult = { error: 'No image selected.' };
+      setResult(finalResult);
+      return finalResult;
     }
     setUploading(true);
     try {
       // Log the image URI to the terminal
       console.log('Selected image URI:', imageUri);
+      toast.show('Food scanned successfully!', {
+        type: 'success',
+        duration: 3000,
+        placement: 'top',
+      });
       // Guess food name from image (placeholder)
       const guessedName = await guessFoodNameFromImage(imageUri);
       // Use Open Food Facts API as in scan.ts
@@ -117,26 +125,32 @@ export function useUploadImage() {
       // Log calories count and guessed name
       console.log('Calories detected for', guessedName, ':', calories);
       if (typeof calories === 'number') {
-        setResult({
+        finalResult = {
           calories,
           imageUrl: imageUri,
           error: null,
           guessedName,
-        });
+        };
+        setResult(finalResult);
+        return finalResult;
       } else if (typeof calories === 'string' && calories.trim() !== '') {
-        setResult({
+        finalResult = {
           calories: Number(calories),
           imageUrl: imageUri,
           error: null,
           guessedName,
-        });
+        };
+        setResult(finalResult);
+        return finalResult;
       } else {
-        setResult({
+        finalResult = {
           calories: null,
           imageUrl: imageUri,
           error: 'Calories not found for this food.',
           guessedName,
-        });
+        };
+        setResult(finalResult);
+        return finalResult;
       }
     } catch (error: unknown) {
       let message = 'Fetch failed';
@@ -148,12 +162,14 @@ export function useUploadImage() {
       ) {
         message = (error as { message: string }).message;
       }
-      setResult({
+      finalResult = {
         calories: null,
         imageUrl: imageUri,
         error: message,
         guessedName: null,
-      });
+      };
+      setResult(finalResult);
+      return finalResult;
     } finally {
       setUploading(false);
     }
