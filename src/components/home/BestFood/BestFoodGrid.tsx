@@ -1,9 +1,9 @@
+import { router } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { FlatList, TouchableOpacity, useWindowDimensions } from 'react-native';
 
 import { fetchFoodItems } from '@/api/sanity';
 import FoodItemCard from '@/components/elements/Cards/FoodItemCard';
-import { router } from 'expo-router';
 
 interface Props {
   columns?: number;

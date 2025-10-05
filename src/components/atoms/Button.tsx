@@ -43,7 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   const getTextStyles = () => {
     const baseStyles = 'font-quicksand-bold text-center';
-    const colorStyles =
+    const colorStyles: 'text-green-500' | 'text-gray-700' | 'text-white' =
       variant === 'outline'
         ? 'text-green-500'
         : variant === 'secondary'

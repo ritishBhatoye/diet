@@ -1,10 +1,8 @@
-import { SafeAreaView } from 'react-native';
-
 import BestFoodView from '@/components/home/BestFood/BestFoodView';
 
 const BestFoodScreen = () => (
-  <SafeAreaView className="flex-1 px-5">
-    <BestFoodView layout={'grid'} limit={20} />
-  </SafeAreaView>
+  <>
+    <BestFoodView limit={20} />
+  </>
 );
 export default BestFoodScreen;

@@ -11,7 +11,7 @@ interface Props {
 }
 
 const FoodItemCard = ({ item, cardType }: Props) => {
-  const imageUri = item?.image?.asset
+  const imageUri: any = item?.image?.asset
     ? urlFor(item.image)
     : typeof item.image === 'string'
       ? item.image
