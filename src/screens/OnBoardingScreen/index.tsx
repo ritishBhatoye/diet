@@ -1,11 +1,21 @@
+import { ImageBackground } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import type { ReactElement } from 'react';
 // eslint-disable-next-line no-duplicate-imports
 import { useRef, useState } from 'react';
-import { Animated, Dimensions, FlatList, type ViewToken } from 'react-native';
+import {
+  Animated,
+  Dimensions,
+  FlatList,
+  View,
+  type ViewToken,
+} from 'react-native';
 
 import { onboardingData } from '@/data/onboardingData';
 
+import { AuthActionButtons } from './AuthActionButtons';
 import { OnboardingItem } from './OnboardingItem';
+import { Pagination } from './Pagination';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -25,32 +35,58 @@ const OnBoardingScreen = (): ReactElement => {
     }
   ).current;
 
+  const backgroundImage =
+    onboardingData[currentIndex]?.image || onboardingData[0]?.image;
+
   return (
-    <FlatList<OnBoardingType>
-      data={onboardingData}
-      renderItem={({ item }) => (
-        <OnboardingItem
-          item={item}
-          width={width}
-          currentIndex={currentIndex}
-          onboardingData={onboardingData}
-          scrollX={scrollX}
+    <ImageBackground
+      source={{ uri: backgroundImage as any }}
+      style={{ flex: 1 }}
+      className="flex-1"
+    >
+      <LinearGradient
+        colors={['rgba(0,0,0,0.1)', ' rgba(0,0,0,0.3)', 'rgba(0,0,0,0.6)']}
+        style={{
+          flex: 1,
+          // justifyContent: 'flex-end',
+          paddingBottom: 70,
+          // gap: 40,
+          // paddingHorizontal: 20,
+        }}
+      >
+        <FlatList<OnBoardingType>
+          data={onboardingData}
+          renderItem={({ item }) => (
+            <OnboardingItem
+              item={item}
+              width={width}
+              currentIndex={currentIndex}
+              onboardingData={onboardingData}
+              scrollX={scrollX}
+            />
+          )}
+          keyExtractor={(_, index) => index.toString()}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+          scrollEventThrottle={32}
+          ref={slidesRef}
+          onViewableItemsChanged={viewableItemsChanged}
+          viewabilityConfig={viewConfig}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false }
+          )}
         />
-      )}
-      keyExtractor={(_, index) => index.toString()}
-      horizontal
-      pagingEnabled
-      showsHorizontalScrollIndicator={false}
-      bounces={false}
-      scrollEventThrottle={32}
-      ref={slidesRef}
-      onViewableItemsChanged={viewableItemsChanged}
-      viewabilityConfig={viewConfig}
-      onScroll={Animated.event(
-        [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-        { useNativeDriver: false }
-      )}
-    />
+        <View className="w-full items-center pt-6">
+          <Pagination data={onboardingData} scrollX={scrollX} width={width} />
+          {currentIndex === onboardingData.length - 1 ? (
+            <AuthActionButtons />
+          ) : null}
+        </View>
+      </LinearGradient>
+    </ImageBackground>
   );
 };
 
