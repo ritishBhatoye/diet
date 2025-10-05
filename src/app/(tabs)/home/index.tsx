@@ -1,13 +1,22 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import { FlatList, Image, Pressable, ScrollView, View } from 'react-native';
+import {
+  Alert,
+  FlatList,
+  Image,
+  Pressable,
+  ScrollView,
+  View,
+} from 'react-native';
 
 import { MacroStat, NutritionProgress, QuickActionButton } from '@/components';
 import { Text } from '@/components/atoms';
 import BestFood from '@/components/home/BestFood';
 import MyMealPlans from '@/components/home/MyMealPlans';
 import TopAppNavigator from '@/components/home/TopAppNavigator';
-import { ICONS, offers } from '@/constants';
+import { useUploadImage } from '@/components/hooks/useUploadImage';
+import { offers } from '@/constants';
+import { quickActionsData } from '@/constants/quickActions';
 
 const dailyStats = {
   calories: { consumed: 1250, target: 2000 },
@@ -16,14 +25,39 @@ const dailyStats = {
   carbs: { consumed: 150, target: 200 },
 };
 
-const quickActions = [
-  { id: 1, title: 'Log Meal', iconName: ICONS.restaurant, color: '#10B981' },
-  { id: 2, title: 'Scan Food', iconName: ICONS.barcode, color: '#3B82F6' },
-  { id: 3, title: 'Add Water', iconName: ICONS.water, color: '#06B6D4' },
-  { id: 4, title: 'Weigh In', iconName: ICONS.scale, color: '#8B5CF6' },
-] as const;
-
 export default function Index() {
+  // Handler functions for each action
+  const { result, pickAndUploadImage } = useUploadImage();
+
+  const handleLogMeal = () => {
+    // TODO: open bottom sheet logic
+  };
+  const handleScanFood = async () => {
+    await pickAndUploadImage();
+    if (result?.calories) {
+      Alert.alert(
+        'Calories Detected',
+        `This food has ~${result.calories} kcal.`
+      );
+    } else if (result?.error) {
+      Alert.alert('Error', result.error);
+    }
+  };
+  const handleAddWater = () => {
+    // TODO: add water logic
+  };
+  const handleWeighIn = () => {
+    // TODO: weigh in logic
+  };
+
+  // Map action IDs to handlers
+  const actionHandlers: Record<number, () => void> = {
+    1: handleLogMeal,
+    2: handleScanFood,
+    3: handleAddWater,
+    4: handleWeighIn,
+  };
+
   // const calorieProgress =
   //   (dailyStats.calories.consumed / dailyStats.calories.target) * 100;
 
@@ -77,15 +111,18 @@ export default function Index() {
             Quick Actions
           </Text>
           <View className="flex-row justify-between">
-            {quickActions.map(action => (
-              <QuickActionButton
-                key={action.id}
-                title={action.title}
-                iconName={action.iconName}
-                color={action.color}
-                className="mx-1"
-              />
-            ))}
+            {quickActionsData.map(
+              (action: (typeof quickActionsData)[number]) => (
+                <QuickActionButton
+                  key={action.id}
+                  title={action.title}
+                  iconName={action.iconName}
+                  color={action.color}
+                  className="mx-1"
+                  onPress={actionHandlers[action.id] || (() => {})}
+                />
+              )
+            )}
           </View>
         </View>
 
