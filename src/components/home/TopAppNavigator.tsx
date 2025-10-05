@@ -1,13 +1,14 @@
 import { BlurView } from 'expo-blur';
 import { useState } from 'react';
-import { SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ICONS } from '@/constants';
 
 import { Icon, Text } from '../atoms';
 import { LocationBottomSheet } from '../elements';
 
-const TopAppNavigator = () => {
+const TopAppNavigator = ({ coachMessage }: { coachMessage: string }) => {
   const [isLocationSheetVisible, setIsLocationSheetVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<LocationData | null>(
     null
@@ -50,7 +51,8 @@ const TopAppNavigator = () => {
                 fontFamily="barlow"
                 weight="light"
               >
-                Let&apos;s track your nutrition today
+                {/* Let&apos;s track your nutrition today */}
+                {coachMessage}
               </Text>
             </View>
             <TouchableOpacity className="h-10 w-10 items-center justify-center rounded-full bg-white">

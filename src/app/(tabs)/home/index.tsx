@@ -17,6 +17,7 @@ import CustomModal from '@/components/elements/CustomModal';
 import BestFood from '@/components/home/BestFood';
 import MyMealPlans from '@/components/home/MyMealPlans';
 import TopAppNavigator from '@/components/home/TopAppNavigator';
+import { useFitnessCoach } from '@/components/hooks/useFitnessCoach';
 import { useUploadImage } from '@/components/hooks/useUploadImage';
 import { offers } from '@/constants';
 import { quickActionsData } from '@/constants/quickActions';
@@ -29,6 +30,7 @@ const dailyStats = {
 };
 
 export default function HomeScreen() {
+  const coachMessage: string = useFitnessCoach(dailyStats);
   // Handler functions for each action
   const { result, pickAndUploadImage } = useUploadImage();
   const [isScanModalOpen, setIsScanModalOpen] = useState(false);
@@ -81,7 +83,7 @@ export default function HomeScreen() {
       </Portal>
       <ScrollView className="flex-1 " showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <TopAppNavigator />
+        <TopAppNavigator coachMessage={coachMessage} />
 
         {/* Daily Progress Card */}
         <View className="mx-5 mt-4 rounded-2xl bg-white  p-4 shadow-sm">
