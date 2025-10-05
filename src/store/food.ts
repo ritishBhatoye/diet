@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { getFoodItems } from '@/api/food.service';
 
 interface FoodState {
-  items: FoodItem[];
+  items: any;
   loading: boolean;
   error: string | undefined;
   fetch: () => Promise<void>;
