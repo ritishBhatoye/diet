@@ -26,5 +26,6 @@
   // 🚫 Disable Cursor AI Autocomplete
   "cursor.autocomplete.enabled": false,
   "cursor.inlineSuggestions.enabled": false,
-  "cSpell.showAutocompleteDirectiveSuggestions": false
+  "cSpell.showAutocompleteDirectiveSuggestions": false,
+  "typescript.autoClosingTags": false
 }
