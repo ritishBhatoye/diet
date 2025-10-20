@@ -3,10 +3,10 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
-    Alert,
-    SafeAreaView,
-    TouchableOpacity,
-    View,
+  Alert,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 import { Button, Text } from '@/components/atoms';
@@ -36,7 +36,7 @@ const ScanBarcode = () => {
 
   const handleBarCodeScanned = async ({ type, data }: BarcodeScanningResult) => {
     if (scanned) return;
-    
+
     setScanned(true);
     setLoading(true);
 
@@ -103,7 +103,7 @@ const ScanBarcode = () => {
         <View className="flex-1 items-center justify-center">
           {/* Scanning Frame */}
           <View className="h-64 w-64 rounded-2xl border-4 border-white/50" />
-          
+
           <View className="absolute bottom-20 left-0 right-0 items-center">
             <View className="rounded-full bg-black/70 px-6 py-3">
               <Text variant="body" className="text-center text-white">
