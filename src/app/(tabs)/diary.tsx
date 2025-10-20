@@ -83,9 +83,44 @@ const Diary = () => {
       <View className="bg-white px-5 pb-3 pt-5">
         <View className="mb-4 flex-row items-center justify-between">
           <Text variant="heading" weight="bold">
-            Food Log
+            Food Diary
           </Text>
-          <Button title="Add Meal" size="small" />
+          <TouchableOpacity>
+            <Ionicons name="calendar-outline" size={24} color="#22C55E" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Quick Add Actions */}
+        <View className="mb-4 flex-row justify-between space-x-2">
+          <TouchableOpacity
+            onPress={() => Alert.alert('AI Scan', 'Take a photo of your meal')}
+            className="flex-1 flex-row items-center justify-center rounded-xl bg-primary/10 py-3"
+          >
+            <Ionicons name="camera-outline" size={20} color="#22C55E" />
+            <Text variant="caption" weight="bold" className="ml-2 text-primary">
+              AI Scan
+            </Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            onPress={() => Alert.alert('Barcode', 'Scan product barcode')}
+            className="flex-1 flex-row items-center justify-center rounded-xl bg-blue-500/10 py-3"
+          >
+            <Ionicons name="barcode-outline" size={20} color="#3B82F6" />
+            <Text variant="caption" weight="bold" className="ml-2 text-blue-500">
+              Barcode
+            </Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            onPress={() => Alert.alert('Search', 'Search food database')}
+            className="flex-1 flex-row items-center justify-center rounded-xl bg-orange-500/10 py-3"
+          >
+            <Ionicons name="search-outline" size={20} color="#F97316" />
+            <Text variant="caption" weight="bold" className="ml-2 text-orange-500">
+              Search
+            </Text>
+          </TouchableOpacity>
         </View>
 
         {/* Summary */}
@@ -187,4 +222,4 @@ const Diary = () => {
   );
 };
 
-export default Cart;
+export default Diary;
