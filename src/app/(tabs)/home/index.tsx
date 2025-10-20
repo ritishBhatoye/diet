@@ -2,12 +2,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
-  Alert,
-  FlatList,
-  Image,
-  Pressable,
-  ScrollView,
-  View,
+    Alert,
+    FlatList,
+    Image,
+    Pressable,
+    ScrollView,
+    View,
 } from 'react-native';
 import { Portal } from 'react-native-portalize';
 
@@ -36,22 +36,20 @@ export default function HomeScreen() {
   const [isScanModalOpen, setIsScanModalOpen] = useState(false);
 
   const handleLogMeal = () => {
-    // TODO: open bottom sheet logic
+    router.push('/(tabs)/diary');
   };
-  const handleScanFood = async () => {
-    const scanResult: any = await pickAndUploadImage();
-    console.log(' scanResult ', scanResult);
-    if (scanResult?.calories) {
-      setIsScanModalOpen(true);
-    } else if (scanResult?.error) {
-      Alert.alert('Error', scanResult.error);
-    }
+  
+  const handleScanFood = () => {
+    router.push('/(tabs)/scan-meal');
   };
+  
   const handleAddWater = () => {
-    // TODO: add water logic
+    // TODO: Increment water count in storage
+    Alert.alert('Water Added', '+1 cup of water logged!');
   };
+  
   const handleWeighIn = () => {
-    // TODO: weigh in logic
+    router.push('/(tabs)/progress');
   };
 
   // Map action IDs to handlers
