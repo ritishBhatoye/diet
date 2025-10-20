@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  TouchableOpacity,
-  View,
+    FlatList,
+    Image,
+    SafeAreaView,
+    TouchableOpacity,
+    View
 } from 'react-native';
 
 import { Button, Icon, Text } from '@/components/atoms';
 import { QuantityControl, StatCard } from '@/components/elements';
 import { ICONS, images } from '@/constants';
 
-const cartItems = [
+const diaryItems = [
   {
     id: 1,
     name: 'Grilled Chicken Breast',
@@ -43,8 +43,9 @@ const cartItems = [
   },
 ];
 
-const Cart = () => {
-  const [items, setItems] = useState(cartItems);
+const Diary = () => {
+  const [items, setItems] = useState(diaryItems);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const updateQuantity = (id: number, change: number) => {
     setItems(
